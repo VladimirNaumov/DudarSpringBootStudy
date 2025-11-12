@@ -10,13 +10,14 @@
 <header th:insert="blocks/header :: header"></header>
 
 <div class="container mt-5">
-
-    <!мы получаем данные в виде массива, поэтому их перебираем циклом (отображение табличных записей)>
-    <div th:each="el : ${posts}" class ="alert alert-info mt-2 " >
-        <h3 th:text="${el.title}"/>
-        <p th:text="${el.anons}"/>
-        <a th:href="'/blog/'+${el.id}" class="btn btn-warning" >Детальнее</a>
-
+    <div th:each="el : ${post}" class ="alert alert-info mt-2 " >
+        <h1 th:text="${el.title}"/>
+        <p th:text="${el.full_text}"/>
+        <p><b> Просмотры:</b> <span th:text="${el.views}"/> </p>
+        <a th:href="'/blog/'+${el.id}+'/edit'" class="btn btn-warning" >Редактировать</a><br><br>
+        <form th:action="'/blog/'+${el.id}+'/remove'" method="post">
+        <button class="btn btn-warning" type="submit"> Удалить </button>
+        </form>
     </div>
 </div>
 
